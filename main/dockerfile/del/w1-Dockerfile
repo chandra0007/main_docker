@@ -1,0 +1,8 @@
+FROM ubuntu:18.04
+RUN apt-get update -y
+RUN apt-get install nginx -y
+#RUN useradd -rm -d /home/ubuntu -s /bin/bash -g root -G sudo -u 1001 ubuntu
+RUN useradd -ms /bin/bash chandan
+USER chandan
+#WORKDIR /home/chandan
+ENV DOCKER_HOSTNAME=${DOCKER_HOSTNAME:-hostname123}

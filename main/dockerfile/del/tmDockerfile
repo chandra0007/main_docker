@@ -1,0 +1,15 @@
+FROM ubuntu
+RUN apt-get update -y
+RUN apt-get install nginx -y
+RUN apt-get install curl -y
+ENV hostname nginx
+WORKDIR /usr/share/nginx/html/
+RUN mv index.html text.html
+#RUN mv /usr/share/nginx/html/index.html /usr/share/nginx/html/text.html
+#RUN echo "<h1>New Nginx</h1>" > /usr/share/nginx/html/index.html  
+COPY . /usr/share/nginx/html/
+EXPOSE 80:80
+RUN useradd -ms /bin/bash chandan
+USER chandan
+WORKDIR /home/chandan
+CMD ["/usr/sbin/nginx", "-g", "daemon off;"]  
